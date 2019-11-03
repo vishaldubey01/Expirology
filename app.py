@@ -68,7 +68,7 @@ def not_complete(error):
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
-
+'''
 import requests
 import json
 from dotenv import load_dotenv
@@ -111,7 +111,7 @@ def callResult(token):
 
     return result
 
-
+'''
 
 
 if __name__ == '__main__':
