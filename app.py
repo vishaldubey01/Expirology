@@ -19,11 +19,11 @@ error = {
     'error': 'Not a food'
 }
 
-@app.route('/', methods=['GET'])
+@app.route('/foods', methods=['GET'])
 def get_tmp():
     return jsonify({'ret': ret})
 
-@app.route('/<string:foodName>', methods=['GET'])
+@app.route('/foods/<string:foodName>', methods=['GET'])
 def get_date(foodName):
     rets = data_processing.getExpiration(foodName)
     #return str(rets)
