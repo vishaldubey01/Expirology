@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Expiring Soon Collection View Controller-->
+        <scene sceneID="zon-cS-jU6">
+            <objects>
+                <collectionViewController storyboardIdentifier="expiringSoonCollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gNs-9j-qQM" customClass="ExpiringSoonCollectionViewController" customModule="Expriology" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="zdj-vW-FfC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LbX-UC-KSF">
+                            <size key="itemSize" width="200" height="108"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="expiringSoonCell" id="cp3-HL-zGc" customClass="ExpiringSoonCell" customModule="Expriology" customModuleProvider="target">
+                                <rect key="frame" x="107" y="0.0" width="200" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0Xa-ff-lSQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpz-Ma-U63">
+                                            <rect key="frame" x="8" y="49.5" width="174" height="90.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottomLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bmg-yI-JCb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="174" height="47"/>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZbZ-jS-KJf">
+                                                    <rect key="frame" x="0.0" y="55.5" width="88" height="35"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSw-c7-grh">
+                                                            <rect key="frame" x="0.0" y="0.0" width="88" height="20.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OgX-B2-bjv">
+                                                            <rect key="frame" x="0.0" y="20.5" width="88" height="14.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipsis.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sCY-MC-Kuf">
+                                            <rect key="frame" x="159" y="8.5" width="33" height="32"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                            </preferredSymbolConfiguration>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hpz-Ma-U63" firstAttribute="leading" secondItem="0Xa-ff-lSQ" secondAttribute="leadingMargin" id="Aei-hI-hwS"/>
+                                        <constraint firstItem="hpz-Ma-U63" firstAttribute="top" secondItem="sCY-MC-Kuf" secondAttribute="bottom" constant="8" symbolic="YES" id="OiU-Lj-iVT"/>
+                                        <constraint firstAttribute="trailing" secondItem="sCY-MC-Kuf" secondAttribute="trailing" constant="8" id="a87-ks-LJI"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="hpz-Ma-U63" secondAttribute="trailing" constant="10" id="jM0-Jg-B3d"/>
+                                        <constraint firstAttribute="bottom" secondItem="hpz-Ma-U63" secondAttribute="bottom" constant="10" id="l5j-2h-8bU"/>
+                                        <constraint firstItem="sCY-MC-Kuf" firstAttribute="top" secondItem="0Xa-ff-lSQ" secondAttribute="top" constant="8" id="mlb-os-29s"/>
+                                    </constraints>
+                                </collectionViewCellContentView>
+                                <size key="customSize" width="200" height="150"/>
+                                <connections>
+                                    <outlet property="expirationLabel" destination="OgX-B2-bjv" id="dPG-7z-4Rb"/>
+                                    <outlet property="foodImageView" destination="bmg-yI-JCb" id="0p1-TO-6NO"/>
+                                    <outlet property="foodLabel" destination="rSw-c7-grh" id="YkH-2T-vTr"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="gNs-9j-qQM" id="Jwp-Zs-e1k"/>
+                            <outlet property="delegate" destination="gNs-9j-qQM" id="2tU-Pc-59B"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PlB-iU-i8l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="100.00000000000001" y="39.508928571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ellipsis.circle.fill" catalog="system" width="64" height="60"/>
+    </resources>
+</document>
