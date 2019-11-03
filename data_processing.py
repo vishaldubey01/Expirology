@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[232]:
-
 import pandas as pd
 from fuzzywuzzy import fuzz
 
@@ -27,11 +22,15 @@ def func_Scale(x):
 
 
 # Scale values of refrigerate max by units
-fkDF['Scaled_Metric_Refrigerate'] = fkDF.DOP_Refrigerate_Metric.apply(func_Scale)
-fkDF.DOP_Refrigerate_Max = fkDF.DOP_Refrigerate_Max * fkDF.Scaled_Metric_Refrigerate
+fkDF['Scaled_Metric_DOPRefrigerate'] = fkDF.DOP_Refrigerate_Metric.apply(func_Scale)
+fkDF['Scaled_Metric_Refrigerate'] = fkDF.Refrigerate_Metric.apply(func_Scale)
 
-# fkDF.loc[:,['DOP_Refrigerate_Max','Refrigerate_Max']]
+fkDF.DOP_Refrigerate_Max = fkDF.DOP_Refrigerate_Max * fkDF.Scaled_Metric_DOPRefrigerate
+fkDF.Refrigerate_Max = fkDF.Refrigerate_Max * fkDF.Scaled_Metric_Refrigerate
 
+fkDF['RefrigerateFinal'] = fkDF.DOP_Refrigerate_Max.fillna(0) + fkDF.Refrigerate_Max.fillna(0)
+
+fkDF = fkDF[['Name', 'Keywords', 'RefrigerateFinal']]
 
 # Get Expiration dates
 
@@ -43,7 +42,7 @@ def getExpiration(inputFood):
     finalRows = fkDF[fkDF.Fuzz_Value > 40]
     MaxRow = finalRows.loc[finalRows['Fuzz_Value'].idxmax()]
 
-    return [MaxRow['Name'], MaxRow['DOP_Refrigerate_Max']]
+    return MaxRow['Name'], MaxRow['RefrigerateFinal']
 
 
 #     return finalRows

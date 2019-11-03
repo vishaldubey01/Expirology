@@ -17,11 +17,11 @@ ret = [
             }
         ]
 
-@app.route('/todo/api/v1.0/foods', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_tmp():
     return jsonify({'ret': ret})
 
-@app.route('/todo/api/v1.0/foods/<string:foodName>', methods=['GET'])
+@app.route('/<string:foodName>', methods=['GET'])
 def get_date(foodName):
     rets = data_processing.getExpiration(foodName)
     dates = [{'name': rets[0], 'date': rets[1]}]
