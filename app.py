@@ -10,12 +10,14 @@ import data_processing
 
 app = Flask(__name__)
 
-ret = [
-            {
-                "date": 180.0,
-                "name": "Cheese"
-            }
-        ]
+ret = {
+    "date": 0,
+    "name": "None"
+    }
+
+error = {
+    'error': 'Not a food'
+}
 
 @app.route('/', methods=['GET'])
 def get_tmp():
@@ -24,8 +26,11 @@ def get_tmp():
 @app.route('/<string:foodName>', methods=['GET'])
 def get_date(foodName):
     rets = data_processing.getExpiration(foodName)
-    dates = [{'name': rets[0], 'date': rets[1]}]
-    return jsonify({'ret': dates})
+    #return str(rets)
+    #dates = {rets[0]: rets[1]}
+    if(rets=="ERROR"):
+        return error
+    return jsonify(rets)
 
 @app.errorhandler(404)
 def not_found(error):
