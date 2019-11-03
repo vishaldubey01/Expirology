@@ -13,7 +13,7 @@ app = Flask(__name__)
 ret = {
     "date": 0,
     "name": "None"
-    }
+}
 
 error = {
     'error': 'Not a food'
