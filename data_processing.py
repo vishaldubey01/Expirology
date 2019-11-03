@@ -73,6 +73,18 @@ fkDF = fkDF[['Name', 'Keywords', 'RefrigerateFinal']]
 
 concatDF = pd.concat([fkDF, scDF])
 
+def getAll():
+    allNames = [x for x in fkDF['Name']]
+    allVals = [x for x in fkDF['RefrigerateFinal']]
+    tmp = {}
+    for i in range(len(allNames)):
+        tmp[allNames[i].lower().strip()] = allVals[i]
+    ret = []
+    for i in sorted(tmp.keys()):
+        ret.append({'name': i, 'date': tmp[i]})
+    if (len(tmp) == 0):
+        return "ERROR"
+    return ret
 
 def getExpiration(inputFood):
     def getfuzz(x):

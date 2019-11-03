@@ -33,7 +33,8 @@ def home():
 
 @app.route('/foods', methods=['GET'])
 def get_tmp():
-    return jsonify({'ret': ret})
+    rets = data_processing.getAll()
+    return jsonify(rets)
 
 @app.route('/foods/<string:foodName>', methods=['GET'])
 def get_date(foodName):
