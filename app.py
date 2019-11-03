@@ -46,40 +46,19 @@ def get_date(foodName):
 
 UPLOAD_FOLDER = './files'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = ["jpg", "png"]
 
-picsList=[]
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
-###################
-#  Download zone  #
-###################
-
-@app.route('/picture', methods=['GET', 'POST'])
+@app.route('/image', methods=['POST'])
 def upload_file():
-    if request.method == 'POST':
-        file = request.files['file']
-        return "hi"
-        filename = str(time.time()).replace(".", "") + ".jpg"
-
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return jsonify({'upload':True, 'name' : filename})
-
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-    '''
-@app.route('/get/picture/<string:name>', methods=['GET'])
-def send_pics(name):
-    pics = open("./files/" + name)
-    if pics:
-        return send_from_directory(app.config['UPLOAD_FOLDER'], name)
-
-    abort(404)
-
+    imagefile = request.files['image']
+    filename = secure_filename(imagefile.filename)
+    print("\nReceived image File name : " + imagefile.filename)
+    imagefile.save(filename)
+    return callResult(callProcess(filename))
 
 @app.errorhandler(400)
 def not_complete(error):
@@ -88,6 +67,52 @@ def not_complete(error):
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
+
+
+import requests
+import json
+from dotenv import load_dotenv
+import os
+
+# load your environment containing the api key
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(BASEDIR, '.env'))
+API_KEY = "9oaHqjGT77E29HoyQCOdCxicG3z75nIGQKbhv7ysX2tflOGU4oioACKUdDzEh81J"
+
+def callProcess(filename):
+
+    endpoint = "https://api.tabscanner.com/api/2/process"
+    receipt_image = filename
+    payload = {"documentType": "receipt"}
+    files = {}
+    with open(receipt_image, encoding="utf8", errors='ignore') as f:
+        files['file'] = f.read()
+    headers = {'apikey': API_KEY}
+
+    response = requests.post(
+        endpoint,
+        files=files,
+        data=payload,
+        headers=headers)
+
+    result = json.loads(response.text)
+
+    return result
+
+def callResult(token):
+
+    url = "https://api.tabscanner.com/api/result/{0}"
+    endpoint = url.format(token)
+
+    headers = {'apikey':API_KEY}
+
+    response = requests.get(endpoint,headers=headers)
+    result = json.loads(response.text)
+
+    return result
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

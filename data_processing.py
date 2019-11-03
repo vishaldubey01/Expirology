@@ -79,7 +79,7 @@ def getExpiration(inputFood):
         return fuzz.token_set_ratio(x, inputFood)
 
     fkDF['Fuzz_Value'] = fkDF.Keywords.apply(getfuzz)
-    finalRows = fkDF[fkDF.Fuzz_Value > 70]
+    finalRows = fkDF[fkDF.Fuzz_Value > 40]
     MaxRow = finalRows.sort_values('Fuzz_Value', ascending=False)
 
     tmpNames = [x for x in MaxRow['Keywords']]
